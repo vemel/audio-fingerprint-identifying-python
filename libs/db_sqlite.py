@@ -1,9 +1,10 @@
-from db import Database
-from config import get_config
 import sqlite3
-import sys
 from itertools import zip_longest
+
+from config import get_config
 from termcolor import colored
+
+from libs.db import Database
 
 
 class SqliteDatabase(Database):

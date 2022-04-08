@@ -1,6 +1,7 @@
-import pyaudio
-import numpy
 import wave
+
+import numpy
+import pyaudio
 from reader import BaseReader
 
 

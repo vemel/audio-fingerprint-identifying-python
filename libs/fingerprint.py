@@ -1,16 +1,12 @@
 import hashlib
-import numpy as np
+from operator import itemgetter
+
 import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
-
-from termcolor import colored
+import numpy as np
 from scipy.ndimage.filters import maximum_filter
-from scipy.ndimage.morphology import (
-    generate_binary_structure,
-    iterate_structure,
-    binary_erosion,
-)
-from operator import itemgetter
+from scipy.ndimage.morphology import binary_erosion, generate_binary_structure, iterate_structure
+from termcolor import colored
 
 IDX_FREQ_I = 0
 IDX_TIME_J = 1

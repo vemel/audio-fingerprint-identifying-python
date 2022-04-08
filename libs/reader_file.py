@@ -1,9 +1,10 @@
-from reader import BaseReader
 import os
+from hashlib import sha1
+
+import numpy as np
 from pydub import AudioSegment
 from pydub.utils import audioop
-import numpy as np
-from hashlib import sha1
+from reader import BaseReader
 
 
 class FileReader(BaseReader):
