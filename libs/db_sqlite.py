@@ -1,7 +1,7 @@
 import sqlite3
 from itertools import zip_longest
 
-from config import get_config
+from libs.config import get_config
 from termcolor import colored
 
 from libs.db import Database
