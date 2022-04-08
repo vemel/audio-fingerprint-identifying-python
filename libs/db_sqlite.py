@@ -65,9 +65,9 @@ class SqliteDatabase(Database):
 
     def insert(self, table, params):
         keys = ", ".join(params.keys())
-        values = params.values()
+        values = list(params.values())
 
-        query = "INSERT INTO songs (%s) VALUES (?, ?)" % (keys)
+        query = f"INSERT INTO {table} ({keys}) VALUES (?, ?)"
 
         self.cur.execute(query, values)
         self.conn.commit()

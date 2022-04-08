@@ -147,7 +147,7 @@ def get_2D_peaks(arr2D, plot=False, amp_min=DEFAULT_AMP_MIN):
         plt.gca().invert_yaxis()
         plt.show()
 
-    return zip(frequency_idx, time_idx)
+    return list(zip(frequency_idx, time_idx))
 
 
 # Hash list structure: sha1_hash[0:20] time_offset
@@ -175,6 +175,6 @@ def generate_hashes(peaks, fan_value=DEFAULT_FAN_VALUE):
                 # check if delta is between min & max
                 if t_delta >= MIN_HASH_TIME_DELTA and t_delta <= MAX_HASH_TIME_DELTA:
                     h = hashlib.sha1(
-                        "%s|%s|%s" % (str(freq1), str(freq2), str(t_delta))
+                        ("%s|%s|%s" % (str(freq1), str(freq2), str(t_delta))).encode()
                     )
                     yield (h.hexdigest()[0:FINGERPRINT_REDUCTION], t1)
