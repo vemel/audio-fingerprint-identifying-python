@@ -5,6 +5,12 @@
 
 ![](http://new.tinygrab.com/7020c0e8b010392da4053fa90ab8e0c8419bded864.png)
 
+## Prerequisites
+
+```bash
+sudo apt install ffmpeg portaudio19-dev libblas3 liblapack3 liblapack-dev libblas-dev gfortran libatlas-base-dev
+```
+
 ## How to set up 
 
 1. Run `$ make clean reset` to clean & init database struct

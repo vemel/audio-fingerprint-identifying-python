@@ -72,7 +72,7 @@ if __name__ == '__main__':
 
   def grouper(iterable, n, fillvalue=None):
     args = [iter(iterable)] * n
-    return (filter(None, values) for values
+    return (list(filter(None, values)) for values
             in zip_longest(fillvalue=fillvalue, *args))
 
   data = reader.get_recorded_data()
