@@ -2,7 +2,7 @@ import wave
 
 import numpy
 import pyaudio
-from reader import BaseReader
+from libs.reader import BaseReader
 
 
 class MicrophoneReader(BaseReader):
