@@ -8,7 +8,7 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 *.wav
-*.mp3
+# *.mp3
 
 config-development.json
 
