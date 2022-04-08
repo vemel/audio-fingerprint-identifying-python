@@ -5,12 +5,13 @@ from pydub.utils import audioop
 import numpy as np
 from hashlib import sha1
 
-class FileReader(BaseReader):
-  def __init__(self, filename):
-    # super(FileReader, self).__init__(a)
-    self.filename = filename
 
-  """
+class FileReader(BaseReader):
+    def __init__(self, filename):
+        # super(FileReader, self).__init__(a)
+        self.filename = filename
+
+    """
   Reads any file supported by pydub (ffmpeg) and returns the data contained
   within. If file reading fails due to input being a 24-bit wav file,
   wavio is used as a backup.
@@ -21,62 +22,63 @@ class FileReader(BaseReader):
 
   returns: (channels, samplerate)
   """
-  # pydub does not support 24-bit wav files, use wavio when this occurs
-  def parse_audio(self):
-    limit = None
-    # limit = 10
+    # pydub does not support 24-bit wav files, use wavio when this occurs
+    def parse_audio(self):
+        limit = None
+        # limit = 10
 
-    songname, extension = os.path.splitext(os.path.basename(self.filename))
+        songname, extension = os.path.splitext(os.path.basename(self.filename))
 
-    try:
-      audiofile = AudioSegment.from_file(self.filename)
+        try:
+            audiofile = AudioSegment.from_file(self.filename)
 
-      if limit:
-        audiofile = audiofile[:limit * 1000]
+            if limit:
+                audiofile = audiofile[: limit * 1000]
 
-      data = np.fromstring(audiofile._data, np.int16)
+            data = np.fromstring(audiofile._data, np.int16)
 
-      channels = []
-      for chn in xrange(audiofile.channels):
-        channels.append(data[chn::audiofile.channels])
+            channels = []
+            for chn in xrange(audiofile.channels):
+                channels.append(data[chn :: audiofile.channels])
 
-      fs = audiofile.frame_rate
-    except audioop.error:
-      print('audioop.error')
-      pass
-        # fs, _, audiofile = wavio.readwav(filename)
+            fs = audiofile.frame_rate
+        except audioop.error:
+            print("audioop.error")
+            pass
+            # fs, _, audiofile = wavio.readwav(filename)
 
-        # if limit:
-        #     audiofile = audiofile[:limit * 1000]
+            # if limit:
+            #     audiofile = audiofile[:limit * 1000]
 
-        # audiofile = audiofile.T
-        # audiofile = audiofile.astype(np.int16)
+            # audiofile = audiofile.T
+            # audiofile = audiofile.astype(np.int16)
 
-        # channels = []
-        # for chn in audiofile:
-        #     channels.append(chn)
+            # channels = []
+            # for chn in audiofile:
+            #     channels.append(chn)
 
-    return {
-      "songname": songname,
-      "extension": extension,
-      "channels": channels,
-      "Fs": audiofile.frame_rate,
-      "file_hash": self.parse_file_hash()
-    }
+        return {
+            "songname": songname,
+            "extension": extension,
+            "channels": channels,
+            "Fs": audiofile.frame_rate,
+            "file_hash": self.parse_file_hash(),
+        }
 
-  def parse_file_hash(self, blocksize=2**20):
-    """ Small function to generate a hash to uniquely generate
-    a file. Inspired by MD5 version here:
-    http://stackoverflow.com/a/1131255/712997
+    def parse_file_hash(self, blocksize=2 ** 20):
+        """Small function to generate a hash to uniquely generate
+        a file. Inspired by MD5 version here:
+        http://stackoverflow.com/a/1131255/712997
 
-    Works with large files.
-    """
-    s = sha1()
+        Works with large files.
+        """
+        s = sha1()
 
-    with open(self.filename , "rb") as f:
-      while True:
-        buf = f.read(blocksize)
-        if not buf: break
-        s.update(buf)
+        with open(self.filename, "rb") as f:
+            while True:
+                buf = f.read(blocksize)
+                if not buf:
+                    break
+                s.update(buf)
 
-    return s.hexdigest().upper()
+        return s.hexdigest().upper()

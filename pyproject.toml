@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "audio-fingerprint-identifying-python"
+version = "0.1.0"
+description = ""
+authors = ["Vlad Emelianov <volshebnyi@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "*"
+termcolor = "*"
+pyaudio = "*"
+wave = "*"
+pydub = "*"
+
+[tool.poetry.dev-dependencies]
+black = "*"
+isort = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
