@@ -1,7 +1,8 @@
 import sys
+from abc import abstractmethod, ABC
 
 
-class Database:
+class Database(ABC):
     TABLE_SONGS = None
     TABLE_FINGERPRINTS = None
 
@@ -11,8 +12,17 @@ class Database:
     def connect(self):
         pass
 
+    @abstractmethod
     def insert(self, table, params):
-        pass
+        raise NotImplementedError()
+
+    @abstractmethod
+    def insertMany(self, table, keys, values):
+        raise NotImplementedError()
+
+    @abstractmethod
+    def findOne(self, table, params):
+        raise NotImplementedError()
 
     def get_song_by_filehash(self, filehash):
         return self.findOne(self.TABLE_SONGS, {"filehash": filehash})

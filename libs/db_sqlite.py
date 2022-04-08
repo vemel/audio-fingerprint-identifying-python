@@ -78,7 +78,7 @@ class SqliteDatabase(Database):
         def grouper(iterable, n, fillvalue=None):
             args = [iter(iterable)] * n
             return (
-                filter(None, values)
+                [i for i in values if i is not None]
                 for values in zip_longest(fillvalue=fillvalue, *args)
             )
 
@@ -88,6 +88,8 @@ class SqliteDatabase(Database):
                 ", ".join(columns),
             )
             self.cur.executemany(query, split_values)
+            # for row in self.executeAll(f"SELECT * from {table}"):
+            #     print(row)
 
         self.conn.commit()
 
