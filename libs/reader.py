@@ -1,4 +1,4 @@
-class BaseReader(object):
+class BaseReader:
     def __init__(self, a):
         self.a = a
 

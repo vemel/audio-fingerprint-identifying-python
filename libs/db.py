@@ -1,7 +1,7 @@
 import sys
 
 
-class Database(object):
+class Database:
     TABLE_SONGS = None
     TABLE_FINGERPRINTS = None
 

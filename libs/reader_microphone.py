@@ -14,7 +14,7 @@ class MicrophoneReader(BaseReader):
 
     # set default
     def __init__(self, a):
-        super(MicrophoneReader, self).__init__(a)
+        super().__init__(a)
         self.audio = pyaudio.PyAudio()
         self.stream = None
         self.data = []

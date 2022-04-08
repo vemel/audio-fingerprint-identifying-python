@@ -22,7 +22,7 @@ def parse_config(filename):
     config = {}
 
     if os.path.isfile(filename):
-        f = open(filename, "r")
+        f = open(filename)
         config = json.load(f)
         f.close()
 

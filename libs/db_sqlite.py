@@ -51,7 +51,7 @@ class SqliteDatabase(Database):
             values.append(value)
 
         conditions = " AND ".join(conditions)
-        query = "SELECT * FROM %s WHERE %s" % (table, conditions)
+        query = f"SELECT * FROM {table} WHERE {conditions}"
 
         return {"query": query, "values": values}
 
@@ -83,7 +83,7 @@ class SqliteDatabase(Database):
             )
 
         for split_values in grouper(values, 1000):
-            query = "INSERT OR IGNORE INTO %s (%s) VALUES (?, ?, ?)" % (
+            query = "INSERT OR IGNORE INTO {} ({}) VALUES (?, ?, ?)".format(
                 table,
                 ", ".join(columns),
             )

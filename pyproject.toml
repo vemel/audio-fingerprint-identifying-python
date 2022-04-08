@@ -11,6 +11,7 @@ termcolor = "*"
 pyaudio = "*"
 wave = "*"
 pydub = "*"
+matplotlib = "*"
 
 [tool.poetry.dev-dependencies]
 black = "*"
